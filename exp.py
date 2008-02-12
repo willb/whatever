@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-exp.py
+whatever.py
+
+Will's Hastily-Assembled Toolkit for Experimental Validation, Execution, and Recording
 
 Software to manage experiments.  Runs experiments based on a configuration file 
 and saves results to a database.  Can also post-process the database file to get
@@ -19,6 +21,7 @@ import zlib
 import readline
 import select
 import subprocess
+import yaml
 
 from cmd import Cmd
 
