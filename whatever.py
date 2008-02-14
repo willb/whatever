@@ -133,13 +133,17 @@ class Task(object):
 						location.write(data)
 					done = bytes_read == 0
 				
+				# FIXME: replace these when transitioning to zlib
 				self.out = sinks[proc.stdout].getvalue()
 				self.err = sinks[proc.stderr].getvalue()
-			else:
-				ret = proc.wait()
+				
+			return proc.wait()
 		except OSError, err:
 			print "failed to exec %s because of %s" % (self.exe, err)
+			return None
 		
+
+
 class Config(object):
 	"""An experiment configuration"""
 	
@@ -324,7 +328,7 @@ def init():
 	try:
 		yaml = __import__('yaml')
 	except ImportError:
-		print "PyYAML is recommended, but I can't find it.  Will run without it; load and save of configurations will be disabled"
+		print "PyYAML is recommended, but I can't find it.\nRunning without it; load and save of configurations will be disabled"
 
 def main(argv=None):
 	if argv is None:
